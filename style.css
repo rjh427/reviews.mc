@@ -1,0 +1,133 @@
+/*
+ Theme Name:   Motorcycle Reviews
+ Description:  Motorcycle Reviews 
+ Template:     twentyfifteen
+ Version:      1.0.0
+*/
+body {
+	font-family: "Noto Sans";
+	background-image: url(http://reviews.motorcycles/wp-content/uploads/2015/11/burnout-top.png);
+	background-position: top right;
+	background-repeat: no-repeat;
+}
+
+.column-author, .column-categories {
+/*    width: none; */
+}
+.sidebar {
+	border-right:5px solid #c50000;
+}
+@media only screen and (max-width : 955px) {
+	.sidebar {
+		border-right:0px;
+	}
+	.site-branding {
+		padding-right:0px;
+		text-align:center;
+		width:75%;
+		margin:0px auto;
+	}
+	.secondary-toggle {
+		position:fixed;
+		top:80px;
+		right:10px;
+		background-color:#fff;
+		z-index:5;
+    	}
+}
+@media screen and (min-width: 59.6875em) {
+	.widget {
+		margin: 0 0 10%;
+		padding: 0 15%;
+	}
+    .widget-title {
+	    margin: 0 0 0.5em;
+    }
+    .entry-content {
+	    font-size:80%;
+    }
+}
+
+.entry-content {
+	font-size:100%;
+}
+.page-header {
+	padding-left:20px;
+	text-transform:uppercase;
+}
+.site-info {
+	text-align:center;
+}
+.index, span.index, .rId, span.rId {
+    display:none;
+}
+.widget-title {
+	margin: 0 0 1em;
+}
+.reviewMeta {
+    margin: 0 0 0 15px;
+}
+.hentry + .hentry, .page-header + .hentry, .page-header + .page-content {
+    padding-top: 1em;
+    margin-top:unset;
+}
+.reviewTitle {
+    display: inline-flex;
+    padding: 0 0 0 20px;
+
+}
+.hentry, .hentry + .hentry {
+    border: unset;
+    box-shadow: unset;
+    border-color: unset;
+    padding: 0 10px;
+    background:rgba(255,255,255,0.9);
+}
+.hentry:last-of-type, .hentry + .hentry:last-of-type {
+    padding-bottom: 25px;
+}
+.format-standard {
+	background:none;
+	padding:0px;
+}
+
+.review-results {
+	list-style:none;
+}
+
+.review-results li{
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+	margin:10px 0px 0px 0px;
+	padding:20px;
+	padding-right:120px;
+	background-color:#fff;
+	border-left:7px solid #c50000;
+}
+.view-result {
+	float:right;
+	display:inline-block;
+	height:100%;
+	width:auto;
+	text-transform:uppercase;
+	background:#333;
+	color:#fff;
+	padding:10px 20px;
+	position:relative;
+	top:10px;
+	right:10px;
+	text-decoration:none;
+	margin-left:10px;
+}
+.view-result:hover {
+	color:#fff;
+	background:#666;
+	text-decoration:none;
+}
+article header h1 {
+	padding-top:40px;
+}
+.userPict {
+    border: 1px groove #555;
+    
+}
+
