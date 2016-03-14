@@ -16,40 +16,38 @@
 <?php
     if ( !is_single() ) {
 	    echo '<div class="entry-content hentry">';
-//	    the_title( sprintf( '<a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a>' );
-//	    echo ': ' . post_custom('review_title'), ', ', get_the_date();
-//      if (post_custom('overall') != null)
-//          echo ', ', post_custom('overall') . ' Stars';
-        ?>
+?>
         <ul class="review-results">
             <a href="<?php esc_url( the_permalink())?>" class="view-result">Read Review</a>
-            <?php 
-                the_title( sprintf( '<li><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a>' ); 
-                echo '<br />', post_custom('cf_review_title'), '<br /> ', get_the_date();
-                if (post_custom('overall') != null)
-                    echo ' ';
-                    for ($i = 0; $i < post_custom('cf_overall'); $i++) {
-                        echo '&#9733;';
-                    }
+			<?php 
+				$title = substr(get_the_title(), 0, strrpos(get_the_title(), ' '));
+				echo '<li><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $title . '</a>';
+				echo '<br />', post_custom('review_title'), '<br /> ', get_the_date();
+				if (post_custom('overall') != null)
+					echo ' ';
+				for ($i = 0; $i < post_custom('overall'); $i++) {
+					echo '&#9733;';
+                }
                 echo '</li>';
             ?>
         </ul>
         <?php
-	    echo '</div>';
-    }
+		echo '</div>';
+	}
 
-        if ( is_single() ) {?>
-        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <?php }?>
+		if ( is_single() ) {?>
+		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php }?>
 
 	<?php
 		if ( is_single() ) :
     	    echo '<header class="entry-header">';
-			the_title( '<h1 class="entry-title">', ' Review</h1>' );
-			echo "Review Title: <strong>" . post_custom('cf_review_title') . "</strong>";
+			$title = substr(get_the_title(), 0, strrpos(get_the_title(), ' '));
+			echo '<h1 class="entry-title">' . $title . ' Review</h1>';
+			echo "Review Title: <strong>" . post_custom('review_title') . "</strong>";
 			echo '</header><!-- .entry-header -->';
 
-            echo '<div class="entry-content post type-post format-standard hentry">';
+			echo '<div class="entry-content post type-post format-standard hentry">';
 
 		    /* translators: %s: Name of current post */
 		    the_content( sprintf(
@@ -84,5 +82,4 @@
     <?php		
 		endif;
 	?>
-
 

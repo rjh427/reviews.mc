@@ -20,7 +20,7 @@ get_header(); ?>
 
 			<?php
 			// Start the loop.
-			echo '<div class="entry-content post type-post format-standard hentry">';
+			echo '<div class="entry-content post type-post hentry">';
 			while ( have_posts() ) : the_post();
 				get_template_part( 'content', 'search' );
 			// End the loop.

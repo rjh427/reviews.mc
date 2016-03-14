@@ -28,6 +28,9 @@ get_header(); ?>
 //				comments_template();
 			endif;
 
+// substr(get_the_title(), 0, strrpos(get_the_title(), ' '));
+// echo previous_post_link(), next_post_link(), PHP_EOL;
+
 			// Previous/next post navigation.
 			the_post_navigation( array(
 				'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'twentyfifteen' ) . '</span> ' .

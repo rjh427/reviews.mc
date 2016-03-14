@@ -11,16 +11,17 @@
 ?>
 <ul class="review-results">
 <a href="<?php esc_url( the_permalink())?>" class="view-result">Read Review</a>
-<?php 
-    the_title( sprintf( '<li><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a>' ); 
-    echo '<br />', post_custom('cf_review_title'), '<br /> ', get_the_date();
-    if (post_custom('cf_overall') != null)
+<?php
+    $title = substr(get_the_title(), 0, strrpos(get_the_title(), ' '));
+    echo '<li><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $title . '</a>';
+    echo '<br />', post_custom('review_title'), '<br /> ', get_the_date();
+    if (post_custom('overall') != null)
         echo ' ';
-        for ($i = 0; $i < post_custom('cf_overall'); $i++) {
+        for ($i = 0; $i < post_custom('overall'); $i++) {
             echo '&#9733;';
         }
     echo '</li>';
-    
+
 ?>
 </ul>
 <!-- #post-## -->

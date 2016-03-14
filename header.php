@@ -19,7 +19,6 @@
 	<script src="<?php echo esc_url( get_template_directory_uri() ); ?>/js/html5.js"></script>
 	<![endif]-->
 	<?php wp_head(); ?>
-    <?php //echo '<script src="https://www.google.com/recaptcha/api.js"></script>'; ?>
 </head>
 
 <body <?php body_class(); ?>>
@@ -30,7 +29,7 @@
 		<header id="masthead" class="site-header" role="banner">
 			<div class="site-branding">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-				    <img src="/wp-content/uploads/2015/10/reviewsdot.png" alt="Motorcycle Reviews Logo"/></a>
+				    <img src="/wp-content/uploads/2016/01/reviewsdot-new.png" alt="Motorcycle Reviews Logo"/></a>
 
                 <?php
 					$description = get_bloginfo( 'description', 'display' );
@@ -38,7 +37,8 @@
 						<p class="site-description"><?php echo $description; ?></p>
 					<?php endif;
 				?>
-<button class="secondary-toggle"><?php _e( 'Menu and widgets', 'twentyfifteen' ); ?></button>
+				<?php // hide button, have panel always show. see also style.css, the .secondary{} class
+				/* <button class="secondary-toggle"><?php _e( 'Menu and widgets', 'twentyfifteen' ); ?></button> */ ?>
 			</div><!-- .site-branding -->
 		</header><!-- .site-header -->
 		<?php get_sidebar(); ?>
