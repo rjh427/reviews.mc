@@ -9,7 +9,6 @@
  * @since Twenty Fifteen 1.0
  */
 ?>
-
 	</div><!-- .site-content -->
 
 	<footer id="colophon" class="site-footer" role="contentinfo">

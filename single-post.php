@@ -45,6 +45,7 @@ while ( have_posts() ) : the_post();
     $milesHours = '';
     $location = '';
     $ctol_url = '';
+    $imageSubmitted = '';
 
     $postTitle = substr(get_the_title(), 0, strrpos(get_the_title(), ' '));
     $reviewTitle =  post_custom('review_title');
@@ -52,7 +53,7 @@ while ( have_posts() ) : the_post();
     $make = htmlentities(post_custom('manufacturer'));
     $model = htmlentities(post_custom('model'));
     $overall = getRating('overall');
-    $overallRaw = getRatingValue('overall');
+    $overallRaw = getRatingRaw('overall');
     $reliability = getRating('reliability');
     $quality = getRating('quality');
     $performance = getRating('performance');
@@ -66,6 +67,12 @@ while ( have_posts() ) : the_post();
 
     if (post_custom('upgrades') != null) {
         $upgrades = '<p>Upgrades:<br />' . post_custom('upgrades') . '</p>';
+    }
+
+    if (post_custom('anon') == 'N' || post_custom('anon') != '') {
+        $author = '<td>Author:</td><td itemprop="author">' . post_custom('reviewer_name') . '</td>';
+    } else {
+        $author = '<td> Author:</td><td itemprop="author">Anonymous</td>';
     }
 
     if (post_custom('height') != null) {
@@ -98,46 +105,49 @@ while ( have_posts() ) : the_post();
 
     $review = <<<EOT
 
-    <div class="entry-content hentry">
-        <div itemscope itemtype="http://schema.org/Review">
-            <div itemprop="itemReviewed" itemscope itemtype="http://schema.org/motorcycle">
-                <header>
-                    <h1 class="entry-title" itemprop="name"> $postTitle Review</h1>
-                    Review Title: <strong><span itemprop="name"> $reviewTitle </span></strong>
-                </header>
+    <div class="entry-content hentry" itemscope itemtype="http://schema.org/Review">
+        <div itemprop="itemReviewed" itemscope itemtype="http://schema.org/motorcycle">
+            <header>
+                <h1 class="entry-title" itemprop="name"> $postTitle Review</h1>
+                Review Title: <strong><span itemprop="name"> $reviewTitle </span></strong>
+            </header>
 
-                <table>
-                  <tbody>
-                    <tr><th colspan="2">Ratings</th></tr>
-                    <tr> $overall <span class="hidden" itemprop="reviewRating" itemscope 
-                        itemtype="http://schema.org/Rating"><span itemprop="ratingValue">
-                        $overallRaw stars</span></span></tr>
-                    <tr> $reliability </tr>
-                    <tr> $quality </tr>
-                    <tr> $performance </tr>
-                    <tr> $comfort </tr>
-                  </tbody>
-                </table>
+            <table>
+              <tbody>
+                <tr><th colspan="2">Ratings</th></tr>
+                <tr> $overall </tr>
+                <tr colspan="2" class="hidden">
+                    <span class="hidden" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                        <span itemprop="ratingValue"> $overallRaw stars</span>
+                    </span>
+                </tr>
+                <tr> $reliability </tr>
+                <tr> $quality </tr>
+                <tr> $performance </tr>
+                <tr> $comfort </tr>
+              </tbody>
+            </table>
 
-                <span itemprop="reviewBody"> $post->post_content </span>
+            <span itemprop="reviewBody"> $post->post_content </span>
 
-                $imageSubmitted
-                $image
-                $upgrades
+            $imageSubmitted
+            $image
+            $upgrades
 
-                <table><tr><th colspan="2">About the reviewer:</th></tr>
-                    <tr> $height  </tr>
-                    <tr> $weight </tr>
-                    <tr> $milesHours </tr>
-                    <tr> $location </tr>
-                </table>
+            <table><tr><th colspan="2">About the reviewer:</th></tr>
+                <tr> $author  </tr>
+                <tr> $height  </tr>
+                <tr> $weight </tr>
+                <tr> $milesHours </tr>
+                <tr> $location </tr>
+            </table>
 
-                $ctol_url
-                $dateSubmitted
-                
-            </div><!-- itemtype -->
-        </div> <!-- itemReviewed -->
-    </div>
+            $ctol_url
+            $dateSubmitted
+
+        </div><!-- itemtype -->
+    </div> <!-- .entry-content itemReviewed -->
+
 EOT;
 
     echo $review;
@@ -162,15 +172,12 @@ endwhile;
 
 get_footer();
 
-var_dump(post_custom('overall'));
-
 /* Helper function for displayReviewDetails()
  * Get the post meta data for the 1-5 star ratings and return 
  *
  * @return string
  */
 function getRating($param) {
-//    echo "<script>alert(\"$param\")</script>";
     global $post;
     $str = '';
     $key = ucfirst($param);
@@ -195,7 +202,7 @@ function getRating($param) {
  *
  * @return string
  */
-function getRatingValue($param) {
+function getRatingRaw($param) {
     global $post;
     $value = (int)post_custom($param);
 
@@ -210,7 +217,7 @@ function getRatingValue($param) {
 /*
 the $post object contains:
     object(WP_Post)[260]
-        public 'ID' => int 38591
+        public 'ID' => int 38591:
         public 'post_author' => string '1' (length=1)
         public 'post_date' => string '2015-02-15 20:23:00' (length=19)
         public 'post_date_gmt' => string '2015-02-15 20:23:00' (length=19)

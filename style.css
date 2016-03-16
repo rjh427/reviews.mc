@@ -9,6 +9,7 @@ body {
 	background-image: url(http://reviews.motorcycles/wp-content/uploads/2016/02/9k.jpg);
 	background-position: top right;
 	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], textarea {
 	margin-bottom:10px;
