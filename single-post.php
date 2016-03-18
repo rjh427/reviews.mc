@@ -69,10 +69,10 @@ if (post_custom('upgrades') != null) {
 $upgrades = '<p>Upgrades:<br />' . post_custom('upgrades') . '</p>';
 }
 
-if (post_custom('anon') == 'N' || post_custom('anon') != '') {
-$author = '<td>Author:</td><td itemprop="author">' . post_custom('reviewer_name') . '</td>';
-} else {
+if (post_custom('anon') == 'Y') {
 $author = '<td> Author:</td><td itemprop="author">Anonymous</td>';
+} else {
+$author = '<td>Author:</td><td itemprop="author">' . post_custom('reviewer_name') . '</td>';
 }
 
 if (post_custom('height') != null) {
