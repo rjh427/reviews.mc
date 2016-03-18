@@ -106,7 +106,7 @@ $dateSubmitted = '';
 $review = <<<EOT
 <div class="entry-content hentry" itemscope itemtype="http://schema.org/Review">
     <header>
-        <h1 itemprop="itemReviewed" itemscope itemtype="http://schema.org/Motorcycle" class="entry-title" itemprop="name"> $postTitle Review</h1>
+        <h1 itemprop="itemReviewed" itemscope itemtype="http://schema.org/Motorcycle" class="entry-title" itemprop="name"> <span itemprop="name"> $postTitle Review</h1>
         Review Title: <strong><span itemprop="name"> $reviewTitle </span></strong>
     </header>
 
