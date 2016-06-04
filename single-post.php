@@ -61,34 +61,37 @@ $comfort = getRating('comfort');
 
 // for PSN photos on our CDN only, WP handles uploaded photos natively
 if (post_custom('user_picture_filename') != '') {
-$imageSubmitted = '<small class="review_date">Submitted ' . get_the_date('F Y') . ':</small><br />';
-$image = '<img src="' . CDN_URL . post_custom('user_picture_filename') . '" alt="User-submitted image" class="userPict" /><br /><br >';
+    $imageSubmitted = '<small class="review_date">Submitted ' . get_the_date('F Y') . ':</small><br />';
+    $image = '<img src="' . CDN_URL . post_custom('user_picture_filename') . '" alt="User-submitted image" class="userPict" /><br /><br >';
+} elseif (post_custom('usp-file-single') != '') {
+    $imageSubmitted = '<small class="review_date">Submitted ' . get_the_date('F Y') . ':</small><br />';
+    $image = '<img src="' .  post_custom('usp-file-single') . '" alt="User-submitted image" class="userPict" /><br /><br >';
 }
 
 if (post_custom('upgrades') != null) {
-$upgrades = '<p>Upgrades:<br />' . post_custom('upgrades') . '</p>';
+    $upgrades = '<p>Upgrades:<br />' . post_custom('upgrades') . '</p>';
 }
 
 if (post_custom('anon') == 'Y') {
-$author = '<td> Author:</td><td itemprop="author">Anonymous</td>';
+    $author = '<td> Author:</td><td itemprop="author">Anonymous</td>';
 } else {
-$author = '<td>Author:</td><td itemprop="author">' . post_custom('reviewer_name') . '</td>';
+    $author = '<td>Author:</td><td itemprop="author">' . post_custom('reviewer_name') . '</td>';
 }
 
 if (post_custom('height') != null) {
-$height = '<td>Height:</td><td>' . post_custom('height') . '</td>';
+    $height = '<td>Height:</td><td>' . post_custom('height') . '</td>';
 }
 
 if (post_custom('weight') != null) {
-$weight = '<td>Weight:</td><td>' . post_custom('weight') . '</td>';
+    $weight = '<td>Weight:</td><td>' . post_custom('weight') . '</td>';
 }
 
 if (post_custom('miles_or_hours') != null) {
-$milesHours = '<td>Miles or hours spent on the review:</td><td>' . post_custom('miles_or_hours') . '</td>';
+    $milesHours = '<td>Miles or hours spent on the review:</td><td>' . post_custom('miles_or_hours') . '</td>';
 }
 
 if (post_custom('location') != null) {
-$location = '<td>Location</td><td>' . post_custom('location') . '</td>';
+    $location = '<td>Location</td><td>' . post_custom('location') . '</td>';
 }
 
 // http://www.cycletrader.com/search-results?make=<url-safe-make-name>&model=<url-safe-model-name>&modelkeyword=1
@@ -98,9 +101,9 @@ $model . '&modelkeyword=1">' . $make . ' '. $model . '</a> Motorcycles For Sale 
 '<a href="http://www.cycletrader.com">CycleTrader.com</a><br />';
 
 if (post_custom('user_picture_filename') == '') {
-$dateSubmitted = '<small class="review_date">Submitted: ' . get_the_date('F, Y') . '</small>';
+    $dateSubmitted = '<small class="review_date">Submitted: ' . get_the_date('F, Y') . '</small>';
 } else {
-$dateSubmitted = '';
+    $dateSubmitted = '';
 }
 
 $review = <<<EOT
@@ -127,7 +130,7 @@ $review = <<<EOT
     </table>
 
     <span itemprop="reviewBody"> $post->post_content </span>
-
+    <br />
     $imageSubmitted
     $image
     $upgrades
